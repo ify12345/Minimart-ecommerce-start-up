@@ -1,30 +1,56 @@
 import React from 'react'
-import pimage from "../assets/images/arm-chair-01.jpg"
 import "../styles/productcard.css"
 import { Col } from 'reactstrap'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../redux/slices/cartSlice'
+import {toast } from 'react-toastify'
 
+const ProductCard = ({item}) => {
 
-const ProductCard = () => {
+ const dispatch = useDispatch()
+
+ const addToCart = ()=>{
+    dispatch(cartActions.addItem({
+      id: item.id,
+      productName: item.productName,
+      price: item.price,
+      imgUrl: item.imgUrl,
+    })
+    )
+
+    toast.success("Product added to cart")
+ }
+
   return (
      <Col lg="3" md="4">
          <div className='product_item'>
         <div className="product_img">
-            <img src={pimage} alt="" />
+            <motion.img whileHover={{scale:0.9}}  src={item.imgUrl} alt="" />
         </div>
 
-      <h3 className="product_name">
-        Modern Armchair
-      </h3>
 
-      <span>Chair</span>
+      <div className="p-2 product_info">
+            <h3 className="product_name">
+               <Link to={`/shop/${item.id}`}>
+                 {item.productName}
+               </Link>
+            </h3>
 
-      <div className="product_card-bottom">
+              <span >{item.category}</span>
+      </div>
+     
+
+      <div className="product_card-bottom d-flex align-items-center justify-content-between p-2">
         <span className="price">
-            $299
+            {item.price}
         </span>
-        <span>
-            <i className="ri-add-line"></i>
-        </span>
+        <motion.span
+        whileTap={{scale:1.2}}
+        >
+            <i onClick={addToCart} className="ri-add-line"></i>
+        </motion.span>
       </div>
 
     </div>

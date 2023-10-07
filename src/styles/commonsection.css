@@ -1,0 +1,15 @@
+.common_section {
+    background: linear-gradient(#000,#000),
+    url("../assets/images/counter-timer-img.png") no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    display: flex; 
+    padding: 100px 100px;
+    align-items: center;
+    justify-content: center; 
+}
+
+.common_section{
+    color: #fff;
+    font-weight: 600;
+}
