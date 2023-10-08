@@ -22,8 +22,7 @@ root.render(
           pauseOnHover
           theme="dark"
         />
-        
-        <ToastContainer />
+      
         <App />
       </Provider>
     </BrowserRouter>
